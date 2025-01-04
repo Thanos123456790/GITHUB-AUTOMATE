@@ -1,1 +1,32 @@
-..
+name: Auto Commit Code
+
+# Schedule the workflow to run at 12 AM daily
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+# Define the jobs in this workflow
+jobs:
+  commit-and-push:
+    runs-on: ubuntu-latest  # The OS environment for running this workflow
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Perform the desired update (e.g., update a file)
+      - name: Update Code
+        run: |
+          echo "Automated update at $(date)" >> update_log.txt
+
+      # Step 3: Commit and push the changes
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Thanos123456790"
+          git config --global user.email "subhadip03031996@gmail.com"
+          git add .
+          git commit -m "Automated commit: $(date)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
