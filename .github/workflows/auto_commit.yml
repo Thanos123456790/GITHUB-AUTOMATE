@@ -3,7 +3,7 @@ name: Auto Commit Code
 # Schedule the workflow to run at 12 AM daily
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 0 * * *'
 
 # Define the jobs in this workflow
 jobs:
